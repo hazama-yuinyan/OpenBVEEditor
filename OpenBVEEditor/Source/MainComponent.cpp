@@ -5,6 +5,23 @@
     Created: 12 Apr 2011 8:46:19pm
     Author:  Ryouta
 
+	OpenBVEEditor - A simple and easy-to-use editor especially for the OpenBVE Route files
+	Copyright (C) 2011  Ryouta Ozaki
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
   ==============================================================================
 */
 
@@ -14,6 +31,7 @@
 #include "BVECode.h"
 #include "CommonHeader.h"
 #include "StoredSettings.h"
+#include "Preferences.h"
 #include "SearchComponents.h"
 
 
@@ -290,7 +308,7 @@ void MainComponent::getCommandInfo(CommandID commandID, ApplicationCommandInfo& 
 		result.addDefaultKeypress('F', ModifierKeys::commandModifier);
 		break;
 	case CommandIDs::HANDY_SEARCH:
-		result.setInfo("Handy Search", TRANS("Finds a certain string"), CommandCategories::GENERAL, 0);
+		result.setInfo("Handy Search", TRANS("Finds a certain string"), CommandCategories::GENERAL, ApplicationCommandInfo::hiddenFromKeyEditor);
 		break;
 	case CommandIDs::REPLACE:
 		result.setInfo(TRANS("Replace"), TRANS("Replaces a certain string with another one"), CommandCategories::EDITTING, 0);

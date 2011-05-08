@@ -1,3 +1,27 @@
+/*
+  ==============================================================================
+
+    OpenBVEEditor - A simple and easy-to-use editor especially for the OpenBVE Route files
+	Copyright (C) 2011  Ryouta Ozaki
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+  ==============================================================================
+*/
+
+
 #include "CodeEditor.h"
 #include "CommonHeader.h"
 #include "StoredSettings.h"
@@ -101,15 +125,15 @@ void CodeEditor::codeDocumentChanged(const CodeDocument::Position& affectedTextS
 	static const String LOOK_UP_CHARS[] = {String(L"{"), String(L"}")};
 
 	if(do_auto_indent.getValue() && affectedTextStart.getLineNumber() < affectedTextEnd.getLineNumber()){		//assume that we're at the beginning of a line
-		//calculate the number of tabs that we'll insert to the next line
+		//calculate the number of tabs that will be inserted to the next line
 		const String LINE_ABOVE = affectedTextStart.getLineText(), LINE = affectedTextEnd.getLineText();
 		const int TAB_SIZE = editor->getTabSize();
-		const int LENGTH_BEFORE = LINE_ABOVE.length();
+		const int LENGTH_BEFORE = LINE_ABOVE.trimEnd().length();
 		const int LENGTH_AFTER = LINE_ABOVE.trimStart().length();
-		const String TARGET_STR = String::charToString(affectedTextStart.movedBy(-1).getCharacter());
-		int tab_size_to_add = (TARGET_STR == LOOK_UP_CHARS[0]) ? ((LENGTH_AFTER - LENGTH_BEFORE) / TAB_SIZE) + 1	//add another tab
-							: (TARGET_STR == LOOK_UP_CHARS[1]) ? ((LENGTH_AFTER - LENGTH_BEFORE) / TAB_SIZE) - 1	//remove one tab
-															   : ((LENGTH_AFTER - LENGTH_BEFORE) / TAB_SIZE);
+		const String TARGET_STRINGS[] = {String::charToString(affectedTextStart.movedBy(-1).getCharacter()), String::charToString(affectedTextEnd.getCharacter())};
+		int tab_size_to_add = (TARGET_STRINGS[0] == LOOK_UP_CHARS[0] && TARGET_STRINGS[1] != LOOK_UP_CHARS[1]) ? ((LENGTH_AFTER - LENGTH_BEFORE) / TAB_SIZE) + 1	//add another tab
+							: (TARGET_STRINGS[1] == LOOK_UP_CHARS[1] && TARGET_STRINGS[0] != LOOK_UP_CHARS[0]) ? ((LENGTH_AFTER - LENGTH_BEFORE) / TAB_SIZE) - 1	//remove one tab
+																											   : ((LENGTH_AFTER - LENGTH_BEFORE) / TAB_SIZE);
 
 		for(; tab_size_to_add > 0; --tab_size_to_add){
 			editor->insertTabAtCaret();

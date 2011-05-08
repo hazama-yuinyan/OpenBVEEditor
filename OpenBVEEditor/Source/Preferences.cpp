@@ -5,6 +5,23 @@
     Created: 17 Apr 2011 12:37:43pm
     Author:  Ryouta
 
+	OpenBVEEditor - A simple and easy-to-use editor especially for the OpenBVE Route files
+	Copyright (C) 2011  Ryouta Ozaki
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
   ==============================================================================
 */
 
@@ -50,12 +67,34 @@ void ColoringDisplay::changeListenerCallback(ChangeBroadcaster* source)
 	color.setValue(var(cs->getCurrentColour().toString()));
 }
 
-Information::Information(void) : main("information", JUCEApplication::getInstance()->getApplicationName() + JUCEApplication::getInstance()->getApplicationVersion())
+Information::Information(void) : main("informations", JUCEApplication::getInstance()->getApplicationName() + JUCEApplication::getInstance()->getApplicationVersion()+String("\n-A simple and easy-to-use editor"))
+	, term("term")
 {
 	Font font = main.getFont();
 	font.setHeight(40.0f);
 	main.setFont(font);
 	addAndMakeVisible(&main);
+
+	Font font2 = term.getFont();
+	font2.setHeight(16.0f);
+	term.setFont(font2);
+	term.setMultiLine(true);
+	term.setReadOnly(true);
+	term.setText(
+		"    Copyright (C) 2011  Ryouta Ozaki\n\n"
+		"    This program is free software; you can redistribute it and/or modify\n"
+		"    it under the terms of the GNU General Public License as published by\n"
+		"    the Free Software Foundation; either version 2 of the License, or\n"
+		"    (at your option) any later version.\n\n"
+		"    This program is distributed in the hope that it will be useful,\n"
+		"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+		"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+		"    GNU General Public License for more details.\n\n"
+		"    You should have received a copy of the GNU General Public License\n"
+		"    along with this program; if not, write to the Free Software\n"
+		"    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA"
+		);
+	addAndMakeVisible(&term);
 }
 
 void Information::paint(Graphics& g)
@@ -65,7 +104,8 @@ void Information::paint(Graphics& g)
 
 void Information::resized(void)
 {
-	main.setBoundsRelative(0.05f, 0.8f, 0.9f, 0.15f);
+	term.setBoundsRelative(0.1f, 0.1f, 0.8f, 0.5f);
+	main.setBoundsRelative(0.05f, 0.7f, 0.9f, 0.25f);
 }
 
 PropertyPanel* MyPreferencesPanel::CreateGeneralSettings(void)
@@ -110,7 +150,7 @@ Component* MyPreferencesPanel::createComponentForPage(const String& pageName)
 		return CreateGeneralSettings();
 	}else if(pageName == "KeyMappings"){
 		return new KeyMappingEditorComponent(*command_manager->getKeyMappings(), true);
-	}else if(pageName == "Information"){
+	}else if(pageName == "Informations"){
 		return new Information();
 	}
 
@@ -124,7 +164,7 @@ Preferences::Preferences(void) : panel(), apply_button("Apply Button", TRANS("Ap
 	ScopedPointer<Drawable> info_img = Drawable::createFromImageFile(File::getSpecialLocation(File::currentApplicationFile).getParentDirectory().getChildFile("icons/069649-blue-metallic-orb-icon-alphanumeric-information2-ps.png"));
 	panel.addSettingsPage("GeneralSettings", general_img, nullptr, nullptr);
 	panel.addSettingsPage("KeyMappings", keymap_img, nullptr, nullptr);
-	panel.addSettingsPage("Information", info_img, nullptr, nullptr);
+	panel.addSettingsPage("Informations", info_img, nullptr, nullptr);
 	addAndMakeVisible(&panel);
 
 	apply_button.setButtonText(TRANS("Apply"));
