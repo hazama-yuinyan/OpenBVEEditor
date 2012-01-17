@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="KQaym7K" name="OpenBVEEditor" projectType="guiapp" version="1.0.0"
+              juceLinkage="amalg_multi" buildVST="1" buildRTAS="0" buildAU="1"
+              pluginName="Juce Project" pluginDesc="Juce Project" pluginManufacturer="yourcompany"
+              pluginManufacturerCode="Manu" pluginCode="Plug" pluginChannelConfigs="{1, 1}, {2, 2}"
+              pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
+              pluginSilenceInIsSilenceOut="0" pluginTailLength="0" pluginEditorRequiresKeys="0"
+              pluginAUExportPrefix="JuceProjectAU" pluginAUViewClass="JuceProjectAU_V1"
+              pluginRTASCategory="" bundleIdentifier="com.yourcompany.OpenBVEEditor"
+              jucerVersion="3.0.0">
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" vstFolder="~/SDKs/vstsdk2.4" rtasFolder="~/SDKs/PT_80_SDK"
+               juceFolder="..\..\..\..\..\..\juce_1_53\juce" objCExtraSuffix="dwgNv6"/>
+    <XCODE_IPHONE targetFolder="Builds/iOS" vstFolder="~/SDKs/vstsdk2.4" rtasFolder="~/SDKs/PT_80_SDK"
+                  juceFolder="..\..\..\..\..\..\juce_1_53\juce" objCExtraSuffix="w7ktY4"/>
+    <VS2010 targetFolder="Builds/VisualStudio2010" vstFolder="c:\SDKs\vstsdk2.4"
+            rtasFolder="c:\SDKs\PT_80_SDK" libraryType="1" juceFolder="..\..\..\..\..\..\juce_1_53\juce"/>
+    <ANDROID targetFolder="Builds/Android" androidSDKPath="${user.home}/SDKs/android-sdk-mac_x86"
+             androidNDKPath="${user.home}/SDKs/android-ndk-r5" androidInternetNeeded="1"
+             juceFolder="..\..\..\..\..\..\juce_1_53\juce"/>
+    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/SDKs/vstsdk2.4" juceFolder="..\..\..\..\..\..\juce_1_53\juce"/>
+  </EXPORTFORMATS>
+  <CONFIGURATIONS>
+    <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="OpenBVEEditor"
+                   osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+    <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="OpenBVEEditor"
+                   osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+  </CONFIGURATIONS>
+  <MAINGROUP id="DAnJDh" name="OpenBVEEditor">
+    <GROUP id="4d2jFFC" name="Source">
+      <FILE id="Mvn1sf" name="VariousTools.cpp" compile="1" resource="0"
+            file="Source/VariousTools.cpp"/>
+      <FILE id="VMWBh7" name="VariousTools.h" compile="0" resource="0" file="Source/VariousTools.h"/>
+      <FILE id="UVVShR" name="CodeAssistant.cpp" compile="1" resource="0"
+            file="Source\CodeAssistant.cpp"/>
+      <FILE id="wrevyq" name="SearchComponents.cpp" compile="1" resource="0"
+            file="Source\SearchComponents.cpp"/>
+      <FILE id="B5stLp" name="SearchComponents.h" compile="0" resource="0"
+            file="Source\SearchComponents.h"/>
+      <FILE id="Ngyr5H" name="Preferences.cpp" compile="1" resource="0" file="Source\Preferences.cpp"/>
+      <FILE id="UOlN4H" name="Preferences.h" compile="0" resource="0" file="Source\Preferences.h"/>
+      <FILE id="Fwo5Nj" name="StoredSettings.cpp" compile="1" resource="0"
+            file="Source\StoredSettings.cpp"/>
+      <FILE id="psjEUG" name="StoredSettings.h" compile="0" resource="0"
+            file="Source\StoredSettings.h"/>
+      <FILE id="TwSZzC" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source\MainComponent.cpp"/>
+      <FILE id="uspGFD" name="MainComponent.h" compile="0" resource="0" file="Source\MainComponent.h"/>
+      <FILE id="Sdt11q" name="CommonHeader.h" compile="0" resource="0" file="Source\CommonHeader.h"/>
+      <FILE id="s9ndE2" name="CommandIDs.h" compile="0" resource="0" file="Source\CommandIDs.h"/>
+      <FILE id="JlpG4G" name="CodeEditor.h" compile="0" resource="0" file="Source\CodeEditor.h"/>
+      <FILE id="eTXfGd" name="CodeEditor.cpp" compile="1" resource="0" file="Source\CodeEditor.cpp"/>
+      <FILE id="nntQy" name="CodeAssistant.h" compile="0" resource="0" file="Source\CodeAssistant.h"/>
+      <FILE id="yeVk5" name="BVECode.cpp" compile="1" resource="0" file="Source\BVECode.cpp"/>
+      <FILE id="xOLNDC" name="BVECode.h" compile="0" resource="0" file="Source\BVECode.h"/>
+      <FILE id="exnBr8K" name="MainWindow.cpp" compile="1" resource="0" file="Source\MainWindow.cpp"/>
+      <FILE id="auH9273" name="MainWindow.h" compile="0" resource="0" file="Source\MainWindow.h"/>
+      <FILE id="MJN5egU" name="Main.cpp" compile="1" resource="0" file="Source\Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_FORCE_DEBUG="default" JUCE_LOG_ASSERTIONS="disabled" JUCE_ASIO="disabled"
+               JUCE_WASAPI="disabled" JUCE_DIRECTSOUND="disabled" JUCE_ALSA="disabled"
+               JUCE_QUICKTIME="disabled" JUCE_OPENGL="disabled" JUCE_DIRECT2D="default"
+               JUCE_USE_FLAC="disabled" JUCE_USE_OGGVORBIS="disabled" JUCE_USE_CDBURNER="disabled"
+               JUCE_USE_CDREADER="disabled" JUCE_USE_CAMERA="disabled" JUCE_ENABLE_REPAINT_DEBUGGING="default"
+               JUCE_USE_XINERAMA="default" JUCE_USE_XSHM="default" JUCE_USE_XRENDER="default"
+               JUCE_USE_XCURSOR="default" JUCE_PLUGINHOST_VST="disabled" JUCE_PLUGINHOST_AU="disabled"
+               JUCE_ONLY_BUILD_CORE_LIBRARY="default" JUCE_WEB_BROWSER="disabled"
+               JUCE_SUPPORT_CARBON="disabled" JUCE_CHECK_MEMORY_LEAKS="default"
+               JUCE_CATCH_UNHANDLED_EXCEPTIONS="default" JUCE_DIRECTSHOW="default"
+               JUCE_MEDIAFOUNDATION="default"/>
+</JUCERPROJECT>
