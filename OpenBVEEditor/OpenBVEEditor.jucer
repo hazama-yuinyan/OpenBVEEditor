@@ -11,15 +11,15 @@
               jucerVersion="3.0.0">
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" vstFolder="~/SDKs/vstsdk2.4" rtasFolder="~/SDKs/PT_80_SDK"
-               juceFolder="..\..\..\..\..\..\juce_1_53\juce" objCExtraSuffix="dwgNv6"/>
+               juceFolder="..\..\..\..\..\..\juce_1_54\juce" objCExtraSuffix="dwgNv6"/>
     <XCODE_IPHONE targetFolder="Builds/iOS" vstFolder="~/SDKs/vstsdk2.4" rtasFolder="~/SDKs/PT_80_SDK"
-                  juceFolder="..\..\..\..\..\..\juce_1_53\juce" objCExtraSuffix="w7ktY4"/>
+                  juceFolder="..\..\..\..\..\..\juce_1_54\juce" objCExtraSuffix="w7ktY4"/>
     <VS2010 targetFolder="Builds/VisualStudio2010" vstFolder="c:\SDKs\vstsdk2.4"
-            rtasFolder="c:\SDKs\PT_80_SDK" libraryType="1" juceFolder="..\..\..\..\..\..\juce_1_53\juce"/>
+            rtasFolder="c:\SDKs\PT_80_SDK" libraryType="1" juceFolder="..\..\..\..\..\..\juce_1_54\juce"/>
     <ANDROID targetFolder="Builds/Android" androidSDKPath="${user.home}/SDKs/android-sdk-mac_x86"
              androidNDKPath="${user.home}/SDKs/android-ndk-r5" androidInternetNeeded="1"
-             juceFolder="..\..\..\..\..\..\juce_1_53\juce"/>
-    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/SDKs/vstsdk2.4" juceFolder="..\..\..\..\..\..\juce_1_53\juce"/>
+             juceFolder="..\..\..\..\..\..\juce_1_54\juce"/>
+    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/SDKs/vstsdk2.4" juceFolder="..\..\..\..\..\..\juce_1_54\juce"/>
   </EXPORTFORMATS>
   <CONFIGURATIONS>
     <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="OpenBVEEditor"

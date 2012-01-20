@@ -1,4 +1,4 @@
-﻿language: Japanese
+language: Japanese
 countries: ja
 
 "New file" = "新規作成"

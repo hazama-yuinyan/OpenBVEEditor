@@ -1,4 +1,4 @@
-﻿language: Japanese
+language: Japanese
 countries: ja
 
 "New file" = "新規作成"
@@ -72,4 +72,7 @@ countries: ja
 "Changes the width of a TAB" = "タブの幅を変更します"
 "Double click on an item and the new doc is of that type" = "作成するファイルのタイプの項目をダブルクリックしてください"
 "You have dismissed the creation of a new file..." = "新規ファイルの作成を中止しました..."
+<<<<<<< HEAD
 "(no choices)" = "(履歴がありません)"
+=======
+>>>>>>> 9838dd0ffd59609bc913af9149d4062a428bf30f

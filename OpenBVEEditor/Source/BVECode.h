@@ -1,4 +1,4 @@
-﻿/*
+/*
   ==============================================================================
 
 	OpenBVEEditor - A simple and easy-to-use editor especially for the OpenBVE Route files
@@ -60,6 +60,7 @@ private:
 	boost::xpressive::wsmatch result;
 	RegexIterator begin(void){return result.nested_results().begin();}
 	RegexIterator end(void){return result.nested_results().end();}
+
 	static const Colour colors[];
 	bool is_initialized, did_pos_matched;
 	int line_start_pos;
@@ -67,6 +68,7 @@ private:
 	RegexIterator result_it;
 	std::tr1::array<boost::xpressive::wsregex, POSITION> regexes;
 	boost::xpressive::wsregex preprocess_names, commands, namespaces, variable_names, line;
+
 	void Tokenize(std::wstring& Str);
 	void Init(void);
 	int ToTokenType(const boost::xpressive::wsmatch& Match);

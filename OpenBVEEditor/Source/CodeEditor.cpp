@@ -1,4 +1,4 @@
-﻿/*
+/*
   ==============================================================================
 
     OpenBVEEditor - A simple and easy-to-use editor especially for the OpenBVE Route files
@@ -85,7 +85,7 @@ CodeEditor::CodeEditor(const File& File, CodeDocument* Doc, CodeEditorComponent*
     font.setTypefaceName ("Menlo Regular");
 #else
     Font font (15.0f);
-	font.setTypefaceName ((StoredSettings::getInstance()->GetProperty(Identifiers::Category1).getProperty(Identifiers::Languages) == String("ja")) ? L"MS ゴシック" : Font::getDefaultMonospacedFontName());
+	font.setTypefaceName (/*(StoredSettings::getInstance()->GetProperty(Identifiers::Category1).getProperty(Identifiers::Languages) == String("ja")) ? L"MS ゴシック" :*/ Font::getDefaultMonospacedFontName());
 #endif
     editor->setFont (font);
 	doc->addListener(this);
