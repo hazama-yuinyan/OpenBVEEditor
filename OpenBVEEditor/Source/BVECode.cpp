@@ -1,4 +1,4 @@
-﻿/*
+/*
   ==============================================================================
 
     OpenBVEEditor - A simple and easy-to-use editor especially for the OpenBVE Route files
@@ -464,7 +464,7 @@ int BVETokenizer::readNextToken(CodeDocument::Iterator& source)
 		line_start_pos = start.getPosition();
 
 		while(!source.isEOF() && source != line_end){
-			content.push_back(static_cast<wchar_t>(source.nextChar()));		//行の終わりまでの文字列をコピーする
+			content.push_back(static_cast<wchar_t>(source.nextChar()));		//行の終わり、または一つのexpressionの末端までの文字列をコピーする
 		}
 
 		Tokenize(content);		//boost::xpressiveを使ってトークンの切り出しを行い、その結果のイテレーターを受け取る
@@ -494,7 +494,7 @@ int BVETokenizer::readNextToken(CodeDocument::Iterator& source)
 			return UNKNOWN;
 		}
 		did_pos_matched = (++result_it != end()) ? source.getPosition() == result_it->position() + line_start_pos : false;
-		DBG(String(source.getLine()+1) + L"行 " + String(source.getPosition() - line_start_pos) + L"文字目:");
+		DBG(String(source.getLine()+1) + L"陦・" + String(source.getPosition() - line_start_pos) + L"譁・ｭ礼岼:");
 		for(int i = 0; i < DIFF; ++i){		//トークンの長さ分だけイテレータを進める
 			source.skip();
 		}

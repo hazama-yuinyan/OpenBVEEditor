@@ -14,7 +14,7 @@
 #define __APPHEADERFILE_KQAYM7K__
 
 #include "AppConfig.h"
-#include "../../../../../../../juce_1_54/juce/juce_amalgamated.h"
+#include <juce_amalgamated.h>
 
 namespace ProjectInfo
 {
