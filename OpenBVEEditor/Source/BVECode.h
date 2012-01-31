@@ -1,4 +1,4 @@
-/*
+﻿/*
   ==============================================================================
 
 	OpenBVEEditor - A simple and easy-to-use editor especially for the OpenBVE Route files
