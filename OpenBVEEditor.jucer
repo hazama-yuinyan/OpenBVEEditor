@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="KQaym7K" name="OpenBVEEditor" projectType="guiapp" version="1.1.0"
+              juceLinkage="amalg_multi" buildVST="1" buildRTAS="0" buildAU="1"
+              pluginName="Juce Project" pluginDesc="Juce Project" pluginManufacturer="yourcompany"
+              pluginManufacturerCode="Manu" pluginCode="Plug" pluginChannelConfigs="{1, 1}, {2, 2}"
+              pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
+              pluginSilenceInIsSilenceOut="0" pluginTailLength="0" pluginEditorRequiresKeys="0"
+              pluginAUExportPrefix="JuceProjectAU" pluginAUViewClass="JuceProjectAU_V1"
+              pluginRTASCategory="" bundleIdentifier="jp.ojaru.funprogramming.OpenBVEEditor"
+              jucerVersion="3.0.0">
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" vstFolder="~/SDKs/vstsdk2.4" rtasFolder="~/SDKs/PT_80_SDK"
+               juceFolder="..\..\..\..\..\..\juce_1_54\juce" objCExtraSuffix="dwgNv6">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="OpenBVEEditor"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="OpenBVEEditor"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+      </CONFIGURATIONS>
+    </XCODE_MAC>
+    <XCODE_IPHONE targetFolder="Builds/iOS" vstFolder="~/SDKs/vstsdk2.4" rtasFolder="~/SDKs/PT_80_SDK"
+                  juceFolder="..\..\..\..\..\..\juce_1_54\juce" objCExtraSuffix="w7ktY4">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="OpenBVEEditor"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"
+                       iosCompatibility="default"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="OpenBVEEditor"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"
+                       iosCompatibility="default"/>
+      </CONFIGURATIONS>
+    </XCODE_IPHONE>
+    <VS2010 targetFolder="Builds/VisualStudio2010" vstFolder="c:\SDKs\vstsdk2.4"
+            rtasFolder="c:\SDKs\PT_80_SDK" libraryType="1" juceFolder="C:\juce">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="OpenBVEEditor"
+                       winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="OpenBVEEditor"
+                       winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"/>
+      </CONFIGURATIONS>
+    </VS2010>
+    <ANDROID targetFolder="Builds/Android" androidSDKPath="${user.home}/SDKs/android-sdk-mac_x86"
+             androidNDKPath="${user.home}/SDKs/android-ndk-r5" androidInternetNeeded="1"
+             juceFolder="..\..\..\..\..\..\juce_1_54\juce" androidActivityClass="com.yourcompany.openbveeditor.OpenBVEEditor"
+             androidMinimumSDK="8" androidKeyStore="${user.home}/.android/debug.keystore"
+             androidKeyStorePass="android" androidKeyAlias="androiddebugkey"
+             androidKeyAliasPass="android">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="OpenBVEEditor"
+                       androidArchitectures="armeabi armeabi-v7a"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="OpenBVEEditor"
+                       androidArchitectures="armeabi armeabi-v7a"/>
+      </CONFIGURATIONS>
+    </ANDROID>
+    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/SDKs/vstsdk2.4" juceFolder="/home/ryouta/juce">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="OpenBVEEditor"
+                       libraryPath="/usr/X11R6/lib/"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="OpenBVEEditor"
+                       libraryPath="/usr/X11R6/lib/"/>
+      </CONFIGURATIONS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+  <MAINGROUP id="DAnJDh" name="OpenBVEEditor">
+    <GROUP id="4d2jFFC" name="Source">
+      <FILE id="C2TaCT" name="BVECode.cpp" compile="1" resource="0" file="Source/BVECode.cpp"/>
+      <FILE id="ZSvQPu" name="BVECode.h" compile="0" resource="0" file="Source/BVECode.h"/>
+      <FILE id="Mvn1sf" name="VariousTools.cpp" compile="1" resource="0"
+            file="Source/VariousTools.cpp"/>
+      <FILE id="VMWBh7" name="VariousTools.h" compile="0" resource="0" file="Source/VariousTools.h"/>
+      <FILE id="UVVShR" name="CodeAssistant.cpp" compile="1" resource="0"
+            file="Source\CodeAssistant.cpp"/>
+      <FILE id="wrevyq" name="SearchComponents.cpp" compile="1" resource="0"
+            file="Source\SearchComponents.cpp"/>
+      <FILE id="B5stLp" name="SearchComponents.h" compile="0" resource="0"
+            file="Source\SearchComponents.h"/>
+      <FILE id="Ngyr5H" name="Preferences.cpp" compile="1" resource="0" file="Source\Preferences.cpp"/>
+      <FILE id="UOlN4H" name="Preferences.h" compile="0" resource="0" file="Source\Preferences.h"/>
+      <FILE id="Fwo5Nj" name="StoredSettings.cpp" compile="1" resource="0"
+            file="Source\StoredSettings.cpp"/>
+      <FILE id="psjEUG" name="StoredSettings.h" compile="0" resource="0"
+            file="Source\StoredSettings.h"/>
+      <FILE id="TwSZzC" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source\MainComponent.cpp"/>
+      <FILE id="uspGFD" name="MainComponent.h" compile="0" resource="0" file="Source\MainComponent.h"/>
+      <FILE id="Sdt11q" name="CommonHeader.h" compile="0" resource="0" file="Source\CommonHeader.h"/>
+      <FILE id="s9ndE2" name="CommandIDs.h" compile="0" resource="0" file="Source\CommandIDs.h"/>
+      <FILE id="JlpG4G" name="CodeEditor.h" compile="0" resource="0" file="Source\CodeEditor.h"/>
+      <FILE id="eTXfGd" name="CodeEditor.cpp" compile="1" resource="0" file="Source\CodeEditor.cpp"/>
+      <FILE id="nntQy" name="CodeAssistant.h" compile="0" resource="0" file="Source\CodeAssistant.h"/>
+      <FILE id="yeVk5" name="OpenBVECode.cpp" compile="1" resource="0" file="Source/OpenBVECode.cpp"/>
+      <FILE id="xOLNDC" name="OpenBVECode.h" compile="0" resource="0" file="Source/OpenBVECode.h"/>
+      <FILE id="exnBr8K" name="MainWindow.cpp" compile="1" resource="0" file="Source\MainWindow.cpp"/>
+      <FILE id="auH9273" name="MainWindow.h" compile="0" resource="0" file="Source\MainWindow.h"/>
+      <FILE id="MJN5egU" name="Main.cpp" compile="1" resource="0" file="Source\Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_LOG_ASSERTIONS="disabled" JUCE_ASIO="disabled" JUCE_WASAPI="disabled"
+               JUCE_DIRECTSOUND="disabled" JUCE_ALSA="disabled" JUCE_QUICKTIME="disabled"
+               JUCE_OPENGL="disabled" JUCE_USE_FLAC="disabled" JUCE_USE_OGGVORBIS="disabled"
+               JUCE_USE_CDBURNER="disabled" JUCE_USE_CDREADER="disabled" JUCE_USE_CAMERA="disabled"
+               JUCE_PLUGINHOST_VST="disabled" JUCE_PLUGINHOST_AU="disabled"
+               JUCE_WEB_BROWSER="disabled" JUCE_SUPPORT_CARBON="disabled"/>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1"/>
+    <MODULE id="juce_events" showAllCode="1"/>
+    <MODULE id="juce_graphics" showAllCode="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1"/>
+    <MODULE id="juce_gui_audio" showAllCode="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1"/>
+  </MODULES>
+</JUCERPROJECT>

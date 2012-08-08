@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{5A2A860D-F8F1-AE7F-9DB6-8E8E5109192E}") = "OpenBVEEditor", "OpenBVEEditor.vcxproj", "{B3682D40-1CD1-90CD-5FC9-9ED4C9EC9609}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3682D40-1CD1-90CD-5FC9-9ED4C9EC9609}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B3682D40-1CD1-90CD-5FC9-9ED4C9EC9609}.Debug|Win32.Build.0 = Debug|Win32
+		{B3682D40-1CD1-90CD-5FC9-9ED4C9EC9609}.Release|Win32.ActiveCfg = Release|Win32
+		{B3682D40-1CD1-90CD-5FC9-9ED4C9EC9609}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
