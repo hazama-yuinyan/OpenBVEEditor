@@ -81,7 +81,7 @@ Information::Information(void) : main("informations", JUCEApplication::getInstan
 	term.setMultiLine(true);
 	term.setReadOnly(true);
 	term.setText(
-		"    Copyright (C) 2011  Ryouta Ozaki\n\n"
+		"    Copyright (C) 2011  HAZAMA\n\n"
 		"    This program is free software; you can redistribute it and/or modify\n"
 		"    it under the terms of the GNU General Public License as published by\n"
 		"    the Free Software Foundation; either version 2 of the License, or\n"
@@ -125,7 +125,7 @@ PropertyPanel* MyPreferencesPanel::CreateGeneralSettings(void)
 		choices.add(lang_files[i].getFileNameWithoutExtension());
 		others.add(var(lang_files[i].getFileNameWithoutExtension()));
 	}
-	auto choice_property = new ChoicePropertyComponent(settings->GetProperty(Identifiers::Category1).getPropertyAsValue(Identifiers::Languages, nullptr), TRANS("Language"), choices, others);
+	ChoicePropertyComponent* choice_property = new ChoicePropertyComponent(settings->GetProperty(Identifiers::Category1).getPropertyAsValue(Identifiers::Languages, nullptr), TRANS("Language"), choices, others);
 	choice_property->setTooltip(TRANS("Choose a preferred language"));
 	properties.add(choice_property);
 
@@ -159,9 +159,9 @@ Component* MyPreferencesPanel::createComponentForPage(const String& pageName)
 
 Preferences::Preferences(void) : panel(), apply_button("Apply Button", TRANS("Apply the changes"))
 {
-	ScopedPointer<Drawable> general_img = Drawable::createFromImageFile(File::getSpecialLocation(File::currentApplicationFile).getParentDirectory().getChildFile("icons/078784-blue-metallic-orb-icon-business-gear11.png"));
-	ScopedPointer<Drawable> keymap_img = Drawable::createFromImageFile(File::getSpecialLocation(File::currentApplicationFile).getParentDirectory().getChildFile("icons/069692-blue-metallic-orb-icon-alphanumeric-letter-tt.png"));
-	ScopedPointer<Drawable> info_img = Drawable::createFromImageFile(File::getSpecialLocation(File::currentApplicationFile).getParentDirectory().getChildFile("icons/069649-blue-metallic-orb-icon-alphanumeric-information2-ps.png"));
+	ScopedPointer<Drawable> general_img(Drawable::createFromImageFile(File::getSpecialLocation(File::currentApplicationFile).getParentDirectory().getChildFile("icons/078784-blue-metallic-orb-icon-business-gear11.png")));
+	ScopedPointer<Drawable> keymap_img(Drawable::createFromImageFile(File::getSpecialLocation(File::currentApplicationFile).getParentDirectory().getChildFile("icons/069692-blue-metallic-orb-icon-alphanumeric-letter-tt.png")));
+	ScopedPointer<Drawable> info_img(Drawable::createFromImageFile(File::getSpecialLocation(File::currentApplicationFile).getParentDirectory().getChildFile("icons/069649-blue-metallic-orb-icon-alphanumeric-information2-ps.png")));
 	panel.addSettingsPage("GeneralSettings", general_img, nullptr, nullptr);
 	panel.addSettingsPage("KeyMappings", keymap_img, nullptr, nullptr);
 	panel.addSettingsPage("Informations", info_img, nullptr, nullptr);

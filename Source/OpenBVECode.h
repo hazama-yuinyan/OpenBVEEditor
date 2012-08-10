@@ -23,8 +23,8 @@
 */
 
 
-#ifndef _BVE_CODE
-#define _BVE_CODE
+#ifndef _OPENBVE_CODE
+#define _OPENBVE_CODE
 
 
 #include "CodeAssistant.h"
@@ -34,7 +34,7 @@
 #include <array>
 
 
-class BVECodeAssistant : public CodeAssistant
+class OpenBVECodeAssistant : public CodeAssistant
 {
 private:
 	enum TokenTypes{UNKNOWN = -1, NAMESPACE, PREPROCESS, BUILTIN_FUNCTION};
@@ -45,13 +45,13 @@ private:
 	bool is_with_found;
 
 public:
-	BVECodeAssistant(void);
-	~BVECodeAssistant(void);
+	OpenBVECodeAssistant(void);
+	~OpenBVECodeAssistant(void);
 	void ComputeProposals(const CodeDocument::Position& Start, const CodeDocument::Position&, Array<ContentProposal>& Results);
 	void ComputeContexts(const CodeDocument::Position& Start, const CodeDocument::Position&, OwnedArray<ContextInformation>& Results);
 };
 
-class BVETokenizer : public CodeTokeniser
+class OpenBVETokenizer : public CodeTokeniser
 {
 private:
 	typedef boost::xpressive::wsmatch::nested_results_type::const_iterator RegexIterator;
@@ -61,12 +61,12 @@ private:
 	RegexIterator begin(void){return result.nested_results().begin();}
 	RegexIterator end(void){return result.nested_results().end();}
 
-	static const Colour colors[];
+	static const CodeEditorComponent::ColourScheme::TokenType tokens[];
 	bool is_initialized, did_pos_matched;
 	int line_start_pos;
 	std::wstring content;
 	RegexIterator result_it;
-	std::tr1::array<boost::xpressive::wsregex, POSITION> regexes;
+	std::array<boost::xpressive::wsregex, POSITION> regexes;
 	boost::xpressive::wsregex preprocess_names, commands, namespaces, variable_names, line;
 
 	void Tokenize(std::wstring& Str);
@@ -74,14 +74,13 @@ private:
 	int ToTokenType(const boost::xpressive::wsmatch& Match);
 
 public:
-	explicit BVETokenizer(const int BufferSize);
-	BVETokenizer& operator=(const BVETokenizer& Src){
+	explicit OpenBVETokenizer(const int BufferSize);
+	OpenBVETokenizer& operator=(const OpenBVETokenizer& Src){
 		result_it = Src.result_it;
 		return *this;
 	}
 	int readNextToken(CodeDocument::Iterator& source);
-	StringArray getTokenTypes(void);
-	const Colour getDefaultColour(int tokenType);
+	CodeEditorComponent::ColourScheme getDefaultColourScheme();
 };
 
 #endif

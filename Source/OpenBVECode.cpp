@@ -23,7 +23,7 @@
 */
 
 
-#include "BVECode.h"
+#include "OpenBVECode.h"
 
 
 
@@ -35,7 +35,7 @@ bool operator!=(const CodeDocument::Iterator& lhs, const CodeDocument::Iterator&
 	return !(lhs == rhs);
 }
 
-const std::pair<int, String> BVECodeAssistant::KEYWORDS[] = {
+const std::pair<int, String> OpenBVECodeAssistant::KEYWORDS[] = {
 	std::make_pair(0, L"UnitOfLength"),
 	std::make_pair(0, L"UnitOfSpeed"),
 	std::make_pair(0, L"BlockLength"),
@@ -137,7 +137,7 @@ const std::pair<int, String> BVECodeAssistant::KEYWORDS[] = {
 	std::make_pair(9, L"Load")
 };
 
-const String BVECodeAssistant::NAMESPACES[] = {
+const String OpenBVECodeAssistant::NAMESPACES[] = {
 	L"Options",
 	L"Route",
 	L"Train",
@@ -148,7 +148,7 @@ const String BVECodeAssistant::NAMESPACES[] = {
 	L"Track"
 };
 
-const String BVECodeAssistant::TEXT_NAMESPACES[] = {
+const String OpenBVECodeAssistant::TEXT_NAMESPACES[] = {
 	L"Commands from this namespace provide generic options that affect the way other commands are processed. You should make use of commands from this namespace before making use of commands from other namespaces.",
 	L"Commands from this namespace define general properties of the route.",
 	L"Commands from this namespace define route-train associations.",
@@ -159,7 +159,7 @@ const String BVECodeAssistant::TEXT_NAMESPACES[] = {
 	L"Commands from this namespace define the track layout. Commands from this namespace should appear after commands from any of the other namespaces, and they usually form the largest part of the route file."
 };
 
-const String BVECodeAssistant::PREPROCESS_NAMES[] = {
+const String OpenBVECodeAssistant::PREPROCESS_NAMES[] = {
 	L"If",
 	L"Else",
 	L"Endif",
@@ -169,7 +169,7 @@ const String BVECodeAssistant::PREPROCESS_NAMES[] = {
 	L"Sub"
 };
 
-const String BVECodeAssistant::PARAMETERS_PREPROCESS[] = {
+const String OpenBVECodeAssistant::PARAMETERS_PREPROCESS[] = {
 	L"(Condition)",
 	L"()",
 	L"()",
@@ -179,7 +179,7 @@ const String BVECodeAssistant::PARAMETERS_PREPROCESS[] = {
 	L"(Index) = Expression"
 };
 
-const std::pair<int, String> BVECodeAssistant::PARAMETERS[] = {
+const std::pair<int, String> OpenBVECodeAssistant::PARAMETERS[] = {
 	std::make_pair(0, L"FactorInMeters1; FactorInMeters2; FatocrInMeters3; ...; FactorInMeters_n"),
 	std::make_pair(0, L"FactorInKmph"),
 	std::make_pair(0, L"Length"),
@@ -283,15 +283,15 @@ const std::pair<int, String> BVECodeAssistant::PARAMETERS[] = {
 	std::make_pair(9, L"(SignalIndex) SignalFileWithoutExtension; GlowFileWithoutExtension")
 };
 
-BVECodeAssistant::BVECodeAssistant(void) : cur_namespace_num(-1), last_returned_type(UNKNOWN), is_with_found(false)
+OpenBVECodeAssistant::OpenBVECodeAssistant(void) : cur_namespace_num(-1), last_returned_type(UNKNOWN), is_with_found(false)
 {
 }
 
-BVECodeAssistant::~BVECodeAssistant(void)
+OpenBVECodeAssistant::~OpenBVECodeAssistant(void)
 {
 }
 
-void BVECodeAssistant::ComputeProposals(const CodeDocument::Position& Start, const CodeDocument::Position&, Array<ContentProposal>& Results)
+void OpenBVECodeAssistant::ComputeProposals(const CodeDocument::Position& Start, const CodeDocument::Position&, Array<ContentProposal>& Results)
 {
 	const String LINE = Start.getLineText().fromLastOccurrenceOf(L",", false, false).trim();
 	int i;
@@ -350,7 +350,7 @@ void BVECodeAssistant::ComputeProposals(const CodeDocument::Position& Start, con
 	}
 }
 
-void BVECodeAssistant::ComputeContexts(const CodeDocument::Position& Start, const CodeDocument::Position&, OwnedArray<ContextInformation>& Results)
+void OpenBVECodeAssistant::ComputeContexts(const CodeDocument::Position& Start, const CodeDocument::Position&, OwnedArray<ContextInformation>& Results)
 {
 	std::vector<int>::const_iterator it = returned_indeces.begin(), it_end = returned_indeces.end();
 	for(; it != it_end; ++it){
@@ -365,23 +365,23 @@ void BVECodeAssistant::ComputeContexts(const CodeDocument::Position& Start, cons
 }
 
 
-const Colour BVETokenizer::colors[] = {
-	Colour(0, 0, 0),		//Unknown
-	Colour(0, 128, 0),		//Comment
-	Colour(0, 0, 128),		//Namespaces
-	Colour(0, 0, 128),		//Command
-	Colour(128, 0, 0),		//Variable
-	Colour(10, 128, 20),	//Preprocessor
-	Colour(43, 145, 175)	//Position
+const CodeEditorComponent::ColourScheme::TokenType OpenBVETokenizer::tokens[] = {
+	{"Unknown", Colour(0, 0, 0)},		//Unknown
+	{"Comment", Colour(0, 128, 0)},		//Comment
+	{"Namespaces", Colour(0, 0, 128)},		//Namespaces
+	{"Command", Colour(0, 0, 128)},		//Command
+	{"Variable", Colour(128, 0, 0)},		//Variable
+	{"Preprocessor", Colour(10, 128, 20)},	//Preprocessor
+	{"Position", Colour(43, 145, 175)}	//Position
 };
 
-BVETokenizer::BVETokenizer(const int BufferSize) : content(), is_initialized(false), did_pos_matched(true)
+OpenBVETokenizer::OpenBVETokenizer(const int BufferSize) : content(), is_initialized(false), did_pos_matched(true)
 {
 	content.reserve(BufferSize);
 	Init();
 }
 
-void BVETokenizer::Init(void)
+void OpenBVETokenizer::Init(void)
 {
 	using boost::xpressive::icase;
 	using boost::xpressive::as_xpr;
@@ -419,14 +419,14 @@ void BVETokenizer::Init(void)
 	line = *(*as_xpr(L',') >> (regexes[0] | (bos >> (regexes[1] | regexes[5])) | (!namespaces >> L'.' >> (regexes[2] | regexes[3])) | regexes[4]));
 }
 
-void BVETokenizer::Tokenize(std::wstring& Str)
+void OpenBVETokenizer::Tokenize(std::wstring& Str)
 {
 	boost::xpressive::regex_search(Str, result, line);
 	result_it = begin();
 	is_initialized = true;
 }
 
-int BVETokenizer::ToTokenType(const boost::xpressive::wsmatch& Match)
+int OpenBVETokenizer::ToTokenType(const boost::xpressive::wsmatch& Match)
 {
 	boost::xpressive::wsregex_id_filter_predicate comment_id(regexes[COMMENT-1].regex_id()), namespaces_id(regexes[NAMESPACE-1].regex_id()), namespaces_id2(namespaces.regex_id()), command_id(regexes[COMMAND-1].regex_id())
 		, preprocess_id(regexes[PREPROCESSOR-1].regex_id()), variable_id(regexes[VARIABLE-1].regex_id()), position_id(regexes[POSITION-1].regex_id());
@@ -455,7 +455,7 @@ int BVETokenizer::ToTokenType(const boost::xpressive::wsmatch& Match)
 	return UNKNOWN;
 }
 
-int BVETokenizer::readNextToken(CodeDocument::Iterator& source)
+int OpenBVETokenizer::readNextToken(CodeDocument::Iterator& source)
 {
 	if(!is_initialized){
 		CodeDocument::Iterator start(source), line_end(source);
@@ -510,14 +510,9 @@ int BVETokenizer::readNextToken(CodeDocument::Iterator& source)
 	return UNKNOWN;
 }
 
-StringArray BVETokenizer::getTokenTypes(void)
+CodeEditorComponent::ColourScheme OpenBVETokenizer::getDefaultColourScheme()
 {
-	StringArray result;
-	result.addTokens(String("Unknown Comment Namespace Command Variable Preprocessor Position"), false);
-	return result;
-}
-
-const Colour BVETokenizer::getDefaultColour(int tokenType)
-{
-	return (0 <= tokenType && tokenType <= POSITION) ? colors[tokenType] : Colours::black;
+	CodeEditorComponent::ColourScheme scheme;
+	scheme.types.addArray(tokens, numElementsInArray(tokens));
+	return scheme;
 }

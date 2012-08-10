@@ -257,8 +257,8 @@ public:
 	MainComponent(void);
 	~MainComponent(void){};
 
-	const StringArray getMenuBarNames(void);
-	const PopupMenu getMenuForIndex(int menuIndex, const String& );
+	StringArray getMenuBarNames(void);
+	PopupMenu getMenuForIndex(int menuIndex, const String& );
 	void menuItemSelected(int menuItemID, int);
 
 	ApplicationCommandTarget* getNextCommandTarget()

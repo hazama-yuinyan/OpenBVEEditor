@@ -37,7 +37,7 @@ StoredSettings::StoredSettings(void) : tree_root(Identifiers::Category1), settin
 	option.folderName = JUCEApplication::getInstance()->getApplicationName();
 	option.filenameSuffix = String("settings");
 	settings_file = option.getDefaultFile();
-	ScopedPointer<XmlElement> elem = XmlDocument::parse(settings_file);
+	ScopedPointer<XmlElement> elem(XmlDocument::parse(settings_file));
 	if(elem){
 		tree_root = ValueTree::fromXml(*elem->getChildElement(0));
 		command_manager->getKeyMappings()->restoreFromXml(*elem->getChildElement(1));

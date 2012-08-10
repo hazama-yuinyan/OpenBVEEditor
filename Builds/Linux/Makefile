@@ -19,7 +19,7 @@ ifeq ($(CONFIG),Debug)
   OUTDIR := build
   CPPFLAGS := $(DEPFLAGS) -D "LINUX=1" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O0
-  CXXFLAGS += $(CFLAGS) 
+  CXXFLAGS += $(CFLAGS) -std=c++0x
   LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L/usr/X11R6/lib/ -lX11 -lXext -lXinerama -ldl -lfreetype -lpthread -lrt 
   LDDEPS :=
   RESFLAGS :=  -D "LINUX=1" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode
@@ -34,7 +34,7 @@ ifeq ($(CONFIG),Release)
   OUTDIR := build
   CPPFLAGS := $(DEPFLAGS) -D "LINUX=1" -D "NDEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -Os
-  CXXFLAGS += $(CFLAGS) 
+  CXXFLAGS += $(CFLAGS) -std=c++0x
   LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L/usr/X11R6/lib/ -lX11 -lXext -lXinerama -ldl -lfreetype -lpthread -lrt 
   LDDEPS :=
   RESFLAGS :=  -D "LINUX=1" -D "NDEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode
@@ -54,13 +54,13 @@ OBJECTS := \
   $(OBJDIR)/OpenBVECode_86b7d6d5.o \
   $(OBJDIR)/MainWindow_499ac812.o \
   $(OBJDIR)/Main_90ebc5c2.o \
-  $(OBJDIR)/juce_core_eaa9319e.o \
-  $(OBJDIR)/juce_cryptography_694b3f8.o \
-  $(OBJDIR)/juce_data_structures_cb7bfada.o \
-  $(OBJDIR)/juce_events_46ed9f12.o \
-  $(OBJDIR)/juce_graphics_99a8a576.o \
-  $(OBJDIR)/juce_gui_basics_9ed061f2.o \
-  $(OBJDIR)/juce_gui_extra_f56667fa.o \
+  $(OBJDIR)/juce_core_646164de.o \
+  $(OBJDIR)/juce_cryptography_11fe6738.o \
+  $(OBJDIR)/juce_data_structures_19223e1a.o \
+  $(OBJDIR)/juce_events_f6da3252.o \
+  $(OBJDIR)/juce_graphics_8e9998b6.o \
+  $(OBJDIR)/juce_gui_basics_ff95b532.o \
+  $(OBJDIR)/juce_gui_extra_71e78b3a.o \
 
 .PHONY: clean
 
@@ -132,37 +132,37 @@ $(OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
 	@echo "Compiling Main.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_core_eaa9319e.o: ../../../../juce/modules/juce_core/juce_core.cpp
+$(OBJDIR)/juce_core_646164de.o: ../../../../../../../../juce/modules/juce_core/juce_core.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_core.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_cryptography_694b3f8.o: ../../../../juce/modules/juce_cryptography/juce_cryptography.cpp
+$(OBJDIR)/juce_cryptography_11fe6738.o: ../../../../../../../../juce/modules/juce_cryptography/juce_cryptography.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_cryptography.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_data_structures_cb7bfada.o: ../../../../juce/modules/juce_data_structures/juce_data_structures.cpp
+$(OBJDIR)/juce_data_structures_19223e1a.o: ../../../../../../../../juce/modules/juce_data_structures/juce_data_structures.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_data_structures.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_events_46ed9f12.o: ../../../../juce/modules/juce_events/juce_events.cpp
+$(OBJDIR)/juce_events_f6da3252.o: ../../../../../../../../juce/modules/juce_events/juce_events.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_events.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_graphics_99a8a576.o: ../../../../juce/modules/juce_graphics/juce_graphics.cpp
+$(OBJDIR)/juce_graphics_8e9998b6.o: ../../../../../../../../juce/modules/juce_graphics/juce_graphics.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_graphics.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_gui_basics_9ed061f2.o: ../../../../juce/modules/juce_gui_basics/juce_gui_basics.cpp
+$(OBJDIR)/juce_gui_basics_ff95b532.o: ../../../../../../../../juce/modules/juce_gui_basics/juce_gui_basics.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_gui_basics.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/juce_gui_extra_f56667fa.o: ../../../../juce/modules/juce_gui_extra/juce_gui_extra.cpp
+$(OBJDIR)/juce_gui_extra_71e78b3a.o: ../../../../../../../../juce/modules/juce_gui_extra/juce_gui_extra.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling juce_gui_extra.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"

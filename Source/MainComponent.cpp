@@ -29,7 +29,7 @@
 
 #include "MainComponent.h"
 #include "CodeEditor.h"
-#include "BVECode.h"
+#include "OpenBVECode.h"
 #include "CommonHeader.h"
 #include "StoredSettings.h"
 #include "Preferences.h"
@@ -176,17 +176,17 @@ MainComponent::MainComponent(void) : doc_com(new FlexibleDocumentComponent()), t
 
 void MainComponent::SetProperties(const Identifier& Type, CodeTokeniser* Tokeniser)
 {
-	const StringArray TOKEN_TYPES = Tokeniser->getTokenTypes();
+	auto TOKENS = Tokeniser->getDefaultColourScheme();
 	StoredSettings* settings = StoredSettings::getInstance();
-	for(int i = 0; i < TOKEN_TYPES.size(); ++i){
-		Value tmp(var(Tokeniser->getDefaultColour(i).toString()));
+	for(int i = 0; i < TOKENS.types.size(); ++i){
+		Value tmp(var(TOKENS.types[i].colour.toString()));
 		tmp.addListener(this);
 		token_colors.add(tmp);
-		settings->RestoreProperty(Type, Identifier(TOKEN_TYPES[i]), tmp);
+		settings->RestoreProperty(Type, Identifier(TOKENS.types[i].name), tmp);
 	}
 }
 
-const StringArray MainComponent::getMenuBarNames(void)
+StringArray MainComponent::getMenuBarNames(void)
 {
 	StringArray names;
 	names.add(TRANS("File"));
@@ -197,7 +197,7 @@ const StringArray MainComponent::getMenuBarNames(void)
 	return names;
 }
 
-const PopupMenu MainComponent::getMenuForIndex(int menuIndex, const String& )
+PopupMenu MainComponent::getMenuForIndex(int menuIndex, const String& )
 {
 	PopupMenu menu;
 	if(menuIndex == 0){
@@ -389,7 +389,7 @@ bool MainComponent::perform(const InvocationInfo& info)
 
 	case CommandIDs::FIND:
 		if(!search_dialog->isVisible()){
-			const Rectangle<int> DESKTOP_SIZE = Desktop::getInstance().getMainMonitorArea();
+			const Rectangle<int> DESKTOP_SIZE = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
 			search_dialog->setCentrePosition(DESKTOP_SIZE.getWidth()*3/4, DESKTOP_SIZE.getHeight()/3);
 			search_dialog->setVisible(true);
 		}
@@ -398,7 +398,7 @@ bool MainComponent::perform(const InvocationInfo& info)
 
 	case CommandIDs::REPLACE:
 		if(!search_dialog->isVisible()){
-			const Rectangle<int> DESKTOP_SIZE = Desktop::getInstance().getMainMonitorArea();
+			const Rectangle<int> DESKTOP_SIZE = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
 			search_dialog->setCentrePosition(DESKTOP_SIZE.getWidth()*3/4, DESKTOP_SIZE.getHeight()/3);
 			search_dialog->setVisible(true);
 		}
@@ -454,7 +454,9 @@ void MainComponent::valueChanged(Value& value)
 	int size = token_colors.size();
 	for(; size > 0 && token_colors[size-1].refersToSameSourceAs(value); --size){ }
 	CodeEditor* editor = dynamic_cast<CodeEditor*>(doc_com->getActiveDocument());
-	editor->GetEditorComponent()->setColourForTokenType(size-1, Colour::fromString(value.toString()));
+	auto color_scheme = editor->GetEditorComponent()->getColourScheme();
+	const String NAME = color_scheme.types.getReference(size-1).name;
+	color_scheme.set(NAME, Colour::fromString(value.toString()));
 }
 
 void MainComponent::resized(void)
@@ -467,25 +469,25 @@ void MainComponent::resized(void)
 CodeTokeniser* MainComponent::CreateTokeniser(const String& FileExtension)
 {
 	//create a tokenizer depending on the extension of the file
-	return (FileExtension == String(".csv")) ? new BVETokenizer(1000) : nullptr;
+	return (FileExtension == String(".csv")) ? (new OpenBVETokenizer(1000)) : nullptr;
 }
 
 CodeTokeniser* MainComponent::CreateTokeniser(const int SelectedIndex)
 {
 	//create a tokenizer depeding on the selected item index of the new file wizard
-	return (SelectedIndex == 1) ? new BVETokenizer(1000) : nullptr;
+	return (SelectedIndex == 1) ? (new OpenBVETokenizer(1000)) : nullptr;
 }
 
 CodeAssistant* MainComponent::CreateAssistant(const String& FileExtension)
 {
 	//create a CodeAssistant depending on the extension of the file
-	return (FileExtension == String(".csv")) ? new BVECodeAssistant() : nullptr;
+	return (FileExtension == String(".csv")) ? (new OpenBVECodeAssistant()) : nullptr;
 }
 
 CodeAssistant* MainComponent::CreateAssistant(const int SelectedIndex)
 {
 	//create a CodeAssistant depending on the selected item index of the new file wizard
-	return (SelectedIndex == 1) ? new BVECodeAssistant() : nullptr;
+	return (SelectedIndex == 1) ? (new OpenBVECodeAssistant()) : nullptr;
 }
 
 void MainComponent::CreateFile(void)
@@ -524,7 +526,7 @@ void MainComponent::CreateFile(void)
 		{
 			const Point<int> DOWN_POINT = e.getEventRelativeTo(this).getMouseDownPosition();
 			const int SELECTED_INDEX = getRowContainingPosition(DOWN_POINT.getX(), DOWN_POINT.getY());
-			DialogWindow* dw = findParentComponentOfClass((DialogWindow*)0);
+			DialogWindow* dw = findParentComponentOfClass<DialogWindow>();
 			if(dw){
 				dw->exitModalState(SELECTED_INDEX);
 			}

@@ -33,8 +33,10 @@
 ContextInformation::ContextInformation(const String& StrToAdd) : str(StrToAdd), layout()
 {
 	AttributedString attributed_str(StrToAdd);
+	Font font(Font::getDefaultMonospacedFontName(), 18.0f, Font::plain);
+	attributed_str.setFont(font);
 	layout.createLayout(attributed_str, 300);
-	setSize(300, layout.getHeight() + 14);
+	setSize(300, static_cast<int>(layout.getHeight()) + 14);
 	addToDesktop(ComponentPeer::windowIsTemporary);
 }
 
@@ -45,7 +47,7 @@ void ContextInformation::paint(Graphics& g)
 	g.setColour(Colours::black);
 	g.drawRect(0, 0, getWidth(), getHeight());
 
-	layout.draw(g, juce::Rectangle<float>(0, 0, getWidth(), getHeight()));
+	layout.draw(g, juce::Rectangle<float>(0, 0, static_cast<float>(getWidth()), static_cast<float>(getHeight())));
 }
 
 AssistantContents::AssistantContents(CodeEditorComponent& Editor, CodeAssistant* Assistant) : editor(Editor), assistant_impl(Assistant), last_selected_row(0)
@@ -79,8 +81,9 @@ void AssistantContents::Apply(const int Row)
 	CodeDocument::Position pos = editor.getCaretPos().movedBy(-1);
 	String line = editor.getCaretPos().getLineText();
 	const String REPLACING_STR = proposals[Row].GetStringInfo();
-	for(; REPLACING_STR.toLowerCase().lastIndexOfChar(pos.getCharacter()) != -1; pos.moveBy(-1)){ }		//get back to the first character of the word that's been inputed
-	pos.moveBy(1);
+	const String REPLACING_STR_IN_CAPITAL = REPLACING_STR.toUpperCase(), REPLACING_STR_IN_LOWER = REPLACING_STR.toLowerCase();
+	for(; pos.getPosition() != 0 && (REPLACING_STR_IN_CAPITAL.lastIndexOfChar(pos.getCharacter()) != -1 || REPLACING_STR_IN_LOWER.lastIndexOfChar(pos.getCharacter()) != -1); pos.moveBy(-1)){ }	//get back to the first character of the word that's been inputed
+	if(pos.getPosition() != 0){pos.moveBy(1);}
 	editor.moveCaretTo(pos, true);
 	editor.insertTextAtCaret(REPLACING_STR);
 	pos.moveBy(REPLACING_STR.length());

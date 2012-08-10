@@ -63,7 +63,7 @@ void FindReplaceFunctionality::Find(const String& SearchingText)
 		return;
 	}
 
-	CodeDocument::Position current_pos(&editor->getDocument(), cur_pos->position());
+	CodeDocument::Position current_pos(editor->getDocument(), cur_pos->position());
 	editor->moveCaretTo(current_pos, false);
 	editor->moveCaretTo(current_pos.movedBy(cur_pos->length()), true);
 	editor->repaint();
@@ -102,7 +102,7 @@ void FindReplaceFunctionality::RegexFind(const String& Pattern)
 		return;
 	}
 
-	CodeDocument::Position current_pos(&editor->getDocument(), cur_pos->position());
+	CodeDocument::Position current_pos(editor->getDocument(), cur_pos->position());
 	editor->moveCaretTo(current_pos, false);
 	editor->moveCaretTo(current_pos.movedBy(cur_pos->length()), true);
 	editor->repaint();
@@ -276,8 +276,8 @@ void SearchComponent::ReplacingComponent::resized(void)
 
 void SearchComponent::valueChanged(Value& value)
 {
-	recently_searched.removeValue(value);
-	recently_replaced.removeValue(value);
+	recently_searched.removeAllInstancesOf(value);
+	recently_replaced.removeAllInstancesOf(value);
 }
 
 void SearchComponent::valueTreePropertyChanged(ValueTree& treeWhosePropertyHasChanged, const Identifier& property)

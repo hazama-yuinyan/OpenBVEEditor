@@ -53,10 +53,11 @@ void LineNumbersDisplay::timerCallback(void)
 			str += String(START_LINE_NUM + i) + String("\n");
 		}
 
-		layout.setText(str, editor.getFont());
-		layout.layout(getWidth(), Justification::topRight, false);
+		AttributedString attributed(str);
+		attributed.setJustification(Justification::topRight);
+		layout.createLayout(attributed, static_cast<float>(getWidth()));
 		if(getWidth() < layout.getWidth()){
-			setSize(layout.getWidth(), getHeight());
+			setSize(static_cast<int>(layout.getWidth()), getHeight());
 		}
 		repaint();
 	}
@@ -65,7 +66,7 @@ void LineNumbersDisplay::timerCallback(void)
 void LineNumbersDisplay::paint(Graphics& g)
 {
 	g.fillAll(Colours::antiquewhite);
-	layout.drawWithin(g, 0, 0, getWidth(), getHeight(), Justification::topRight);
+	layout.draw(g, Rectangle<float>(0, 0, static_cast<float>(getWidth()), static_cast<float>(getHeight())));
 }
 
 void LineNumbersDisplay::resized(void)
@@ -94,7 +95,7 @@ CodeEditor::CodeEditor(const File& File, CodeDocument* Doc, CodeEditorComponent*
 	settings->RestoreProperty(Identifiers::Category1, Identifiers::BracketClosing, do_bracket_closing);
 	settings->RestoreProperty(Identifiers::Category1, Identifiers::AutoIndent, do_auto_indent);
 	settings->RestoreProperty(Identifiers::Category1, Identifiers::TabSize, tab_width);
-	editor->setTabSize(tab_width.getValue(), true);
+	editor->setTabSize((int)tab_width.getValue(), true);
 	layout_manager.setItemLayout(0, 20, 60, 30);
 	layout_manager.setItemLayout(1, -0.9, -1.0, -0.95);
 	setSize(800, 600);

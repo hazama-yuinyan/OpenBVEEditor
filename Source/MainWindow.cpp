@@ -45,7 +45,7 @@ MainAppWindow::MainAppWindow()
 	setResizable(true, true);
 	setContentOwned(comp, true);
 	setMenuBar(comp);
-	const Rectangle<int> display_size = Desktop::getInstance().getMainMonitorArea();
+	const Rectangle<int> display_size = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
 	setSize(display_size.getWidth()/2, display_size.getHeight()/2);
     centreWithSize (getWidth(), getHeight());
 	addKeyListener(command_manager->getKeyMappings());

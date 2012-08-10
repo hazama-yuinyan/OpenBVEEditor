@@ -52,7 +52,8 @@
                        androidArchitectures="armeabi armeabi-v7a"/>
       </CONFIGURATIONS>
     </ANDROID>
-    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/SDKs/vstsdk2.4" juceFolder="/home/ryouta/juce">
+    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/SDKs/vstsdk2.4" juceFolder="/home/ryouta/juce"
+                extraCompilerFlags="-std=c++0x">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="OpenBVEEditor"
                        libraryPath="/usr/X11R6/lib/"/>
