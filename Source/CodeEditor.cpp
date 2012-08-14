@@ -54,6 +54,8 @@ void LineNumbersDisplay::timerCallback(void)
 		}
 
 		AttributedString attributed(str);
+		Font font(Font::getDefaultMonospacedFontName(), static_cast<float>(editor.getFont().getHeight()), Font::plain);
+		attributed.setFont(font);
 		attributed.setJustification(Justification::topRight);
 		layout.createLayout(attributed, static_cast<float>(getWidth()));
 		if(getWidth() < layout.getWidth()){

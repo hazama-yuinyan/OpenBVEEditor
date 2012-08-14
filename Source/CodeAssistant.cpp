@@ -33,7 +33,7 @@
 ContextInformation::ContextInformation(const String& StrToAdd) : str(StrToAdd), layout()
 {
 	AttributedString attributed_str(StrToAdd);
-	Font font(Font::getDefaultMonospacedFontName(), 18.0f, Font::plain);
+	Font font(Font::getDefaultMonospacedFontName(), 16.0f, Font::plain);
 	attributed_str.setFont(font);
 	layout.createLayout(attributed_str, 300);
 	setSize(300, static_cast<int>(layout.getHeight()) + 14);
